@@ -1,0 +1,29 @@
+🔹 Phase 1: Core Calculator
+
+Inputs
+
+Validation
+
+Risk & Reward logic
+
+Display results
+
+🔹 Phase 2: UX Improvements
+
+Animations
+
+Error messages
+
+Tooltips
+
+Keyboard support
+
+🔹 Phase 3: Advanced Features (Optional)
+
+Pip calculation per currency pair
+
+Account currency selector
+
+Save previous calculations
+
+Dark/light mode toggle
