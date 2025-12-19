@@ -1,0 +1,50 @@
+START
+  ↓
+User opens website
+  ↓
+Display calculator UI
+  ↓
+User enters inputs:
+  - Account Balance
+  - Risk Percentage
+  - Entry Price
+  - Stop Loss Price
+  - Take Profit Price
+  ↓
+User clicks "Calculate"
+  ↓
+Validate Inputs
+  ├─ If any input is empty → Show error message
+  ├─ If values are invalid → Show validation warning
+  └─ Else → Continue
+  ↓
+Calculate Risk Amount
+  Risk Amount = Account Balance × (Risk % / 100)
+  ↓
+Determine Trade Direction
+  ├─ If Entry > Stop Loss → Buy Trade
+  └─ If Entry < Stop Loss → Sell Trade
+  ↓
+Calculate Stop Loss Distance
+  SL Distance = |Entry Price - Stop Loss Price|
+  ↓
+Calculate Take Profit Distance
+  TP Distance = |Take Profit Price - Entry Price|
+  ↓
+Calculate Risk-to-Reward Ratio
+  RRR = TP Distance ÷ SL Distance
+  ↓
+Calculate Position Size (Lot Size)
+  Position Size = Risk Amount ÷ SL Distance
+  ↓
+Display Results
+  - Risk Amount ($)
+  - Reward Amount ($)
+  - Risk-to-Reward Ratio (1 : X)
+  - Position Size
+  ↓
+User can:
+  ├─ Adjust inputs and recalculate
+  └─ Click Reset
+  ↓
+END
