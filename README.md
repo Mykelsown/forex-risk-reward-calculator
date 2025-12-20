@@ -19,7 +19,7 @@ This project focuses on **proper risk management**, one of the most important pr
 - Compute **position size**
 - Supports both **buy and sell** trade scenarios
 - Clean, responsive, and user-friendly interface
-- Built with a modern utility-first CSS approach
+- Built with a modern utility-first tailwind CSS approach
 
 ---
 
@@ -125,6 +125,6 @@ GitHub: https://github.com/Mykelsown
 
 ## ⭐ Support
 
-If you find this project helpful:
+If you find my project helpful:
 - Give it a ⭐ on GitHub
 - Share it with other traders
