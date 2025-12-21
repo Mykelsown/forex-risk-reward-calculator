@@ -1,1 +1,0 @@
-1. i want to reduce the font-size of the trade parameter content
