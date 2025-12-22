@@ -116,24 +116,26 @@ const calcResults = function () {
 
   // Update UI
   function updateInterface() {
-    displayRiskInDollars.textContent = `${riskAmount.toFixed(2)}`;
-    displayRiskInPips.textContent = `${slDistance.toFixed(2)} pips`;
-    displayRewardInDollars.textContent = `${rewardAmount.toFixed(2)}`;
-    displayRewardInPips.textContent = `${tpDistance.toFixed(2)} pips`;
-    displayRiskRewardRatioInNum.textContent = `1 : ${
-      rrr <= 9 ? rrr.toFixed(2) : rrr.toFixed()
-    }`;
-    displayLotSize.textContent = `${lotSize.toFixed(2)} Lots`;
-    displayUnitSize.textContent = `(${unitSize.toFixed()} units)`;
+    if (validateInput()) {
+      displayRiskInDollars.textContent = `${riskAmount.toFixed(2)}`;
+      displayRiskInPips.textContent = `${slDistance.toFixed(2)} pips`;
+      displayRewardInDollars.textContent = `${rewardAmount.toFixed(2)}`;
+      displayRewardInPips.textContent = `${tpDistance.toFixed(2)} pips`;
+      displayRiskRewardRatioInNum.textContent = `1 : ${
+        rrr <= 9 ? rrr.toFixed(2) : rrr.toFixed()
+      }`;
+      displayLotSize.textContent = `${lotSize.toFixed(2)} Lots`;
+      displayUnitSize.textContent = `(${unitSize.toFixed()} units)`;
 
-    displayBarMovement.innerHTML = "";
+      displayBarMovement.innerHTML = "";
 
-    const rrrBarMovement = `<div class="r-r-r-red-bar bg-red-500 h-3 flex-[1] rounded-l-lg -mr-1"></div>
+      const rrrBarMovement = `<div class="r-r-r-red-bar bg-red-500 h-3 flex-[1] rounded-l-lg -mr-1"></div>
               <div class="r-r-r-green-bar bg-green-500 h-3 flex-[${rrr.toFixed(
                 2
               )}] rounded-r-lg"></div>`;
 
-    displayBarMovement.insertAdjacentHTML("afterbegin", rrrBarMovement);
+      displayBarMovement.insertAdjacentHTML("afterbegin", rrrBarMovement);
+    }
   }
   updateInterface();
 };
@@ -180,20 +182,19 @@ const styleCurrencyUi = function () {
   updatedCurrencystyle.style.color = "#3385FF";
 };
 
-const restoreStyleAccBal = function(){
+const restoreStyleAccBal = function () {
   updatedAccBalstyle.style.color = "oklch(87.2% 0.01 258.338)";
-}
-const restoreStyleRisk = function(){
+};
+const restoreStyleRisk = function () {
   updatedRiskPercentagestyle.style.color = "oklch(87.2% 0.01 258.338)";
-}
-const restoreStyleCurrency = function(){
+};
+const restoreStyleCurrency = function () {
   updatedCurrencystyle.style.color = "oklch(87.2% 0.01 258.338)";
-}
+};
 
-inputAccBal.addEventListener('focus', styleAccBalanceUi)
-inputAccBal.addEventListener('blur', restoreStyleAccBal)
+inputAccBal.addEventListener("focus", styleAccBalanceUi);
+inputAccBal.addEventListener("blur", restoreStyleAccBal);
 inputRiskPercentage.addEventListener("focus", styleRiskPercentageUi);
 inputRiskPercentage.addEventListener("blur", restoreStyleRisk);
 inputCurrency.addEventListener("focus", styleCurrencyUi);
 inputCurrency.addEventListener("blur", restoreStyleCurrency);
-
