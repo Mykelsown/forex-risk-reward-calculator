@@ -42,6 +42,23 @@ const updatedRiskPercentagestyle = document.querySelector(
   ".risk-percentage-text"
 );
 const updatedCurrencystyle = document.querySelector(".currency-pair-text");
+const updateDollarIcon = document.querySelector(".dollar-icon");
+const updateRiskPercentageicon = document.querySelector(
+  ".risk-percentage-icon"
+);
+const updateCurrencyIcon = document.querySelector(".currency-icon");
+
+// change mode
+const lightModeElement = document.querySelector(".light-mode");
+const lightModeIcon = document.querySelector(".light-mode-icon");
+const darkModeElement = document.querySelector(".dark-mode");
+const darkModeIcon = document.querySelector(".dark-mode-icon");
+const changeBody = document.querySelector(".app");
+const getAllWhiteText = document.querySelectorAll(".text-white");
+const getAllGrayText = document.querySelectorAll(".text-gray-400");
+const getDarkBackground = document.querySelectorAll(".bg-priBlues-900");
+const getInputsBox = document.querySelectorAll(".bg-gray-700");
+const getRiskRewardColor = document.querySelectorAll(".bg-priBlues-800");
 
 // calculate and displays result to the interface
 const calcResults = function () {
@@ -141,7 +158,7 @@ const calcResults = function () {
 };
 btnCalculate.addEventListener("click", calcResults);
 
-// Implementing The Reset Button
+// Implementing The Reset Button functionality
 const reloadData = function () {
   const accountBalance = (inputAccBal.value = "");
   const riskPercentage = (inputRiskPercentage.value = "");
@@ -172,24 +189,31 @@ const reloadData = function () {
 };
 btnReset.addEventListener("click", reloadData);
 
+// the changing of elements styles: changes the style when the input box is being clicked
 const styleAccBalanceUi = function () {
   updatedAccBalstyle.style.color = "#3385FF";
+  updateDollarIcon.classList.add("fill-blue-500");
 };
 const styleRiskPercentageUi = function () {
   updatedRiskPercentagestyle.style.color = "#3385FF";
+  updateRiskPercentageicon.classList.add("fill-blue-500");
 };
 const styleCurrencyUi = function () {
   updatedCurrencystyle.style.color = "#3385FF";
+  updateCurrencyIcon.classList.add("fill-blue-500");
 };
 
 const restoreStyleAccBal = function () {
-  updatedAccBalstyle.style.color = "oklch(87.2% 0.01 258.338)";
+  updatedAccBalstyle.style.color = "rgb(75 85 99)";
+  updateDollarIcon.classList.remove("fill-blue-500");
 };
 const restoreStyleRisk = function () {
-  updatedRiskPercentagestyle.style.color = "oklch(87.2% 0.01 258.338)";
+  updatedRiskPercentagestyle.style.color = "rgb(75 85 99)";
+  updateRiskPercentageicon.classList.remove("fill-blue-500");
 };
 const restoreStyleCurrency = function () {
-  updatedCurrencystyle.style.color = "oklch(87.2% 0.01 258.338)";
+  updatedCurrencystyle.style.color = "rgb(75 85 99)";
+  updateCurrencyIcon.classList.remove("fill-blue-500");
 };
 
 inputAccBal.addEventListener("focus", styleAccBalanceUi);
@@ -198,3 +222,65 @@ inputRiskPercentage.addEventListener("focus", styleRiskPercentageUi);
 inputRiskPercentage.addEventListener("blur", restoreStyleRisk);
 inputCurrency.addEventListener("focus", styleCurrencyUi);
 inputCurrency.addEventListener("blur", restoreStyleCurrency);
+
+// Implementing Dark/Light Mode functionalities
+const lightMode = function () {
+  changeBody.classList.remove(
+    "bg-[radial-gradient(circle_at_center,#001433_45%,#000E24_100%)]"
+  );
+  changeBody.classList.add("bg-white");
+};
+lightModeElement.addEventListener("click", lightMode);
+
+getAllWhiteText.forEach((el) => {
+  function changeTextColor() {
+    el.classList.remove("text-white");
+    el.classList.add("text-priBlues-900");
+  }
+
+  lightModeElement.addEventListener("click", changeTextColor);
+});
+
+getAllGrayText.forEach((el) => {
+  function changeGrayColor() {
+    el.classList.remove("text-gray-400");
+    el.classList.add("text-gray-700");
+  }
+  lightModeElement.addEventListener("click", changeGrayColor);
+});
+
+getDarkBackground.forEach((el) => {
+  function changeBackgroundMain() {
+    el.classList.remove("bg-priBlues-900");
+    el.classList.add("bg-priBlues-100");
+  }
+  lightModeElement.addEventListener("click", changeBackgroundMain);
+});
+
+getInputsBox.forEach((el) => {
+  function changeInputsBox() {
+    el.classList.remove("bg-gray-700");
+    el.classList.add("bg-gray-400");
+  }
+  lightModeElement.addEventListener("click", changeInputsBox);
+});
+
+getRiskRewardColor.forEach((el) => {
+  function changeRiskRewardBgColor() {
+    el.classList.remove("bg-priBlues-800");
+    el.classList.add("bg-priBlues-400");
+  }
+  lightModeElement.addEventListener("click", changeRiskRewardBgColor);
+});
+
+const changeSunIconColor =  function(){
+  lightModeElement.classList.add('bg-gray-800')
+  lightModeIcon.classList.add('fill-white')
+  lightModeElement.classList.remove('w-[40%]')
+  lightModeElement.classList.add('w-[60%]')
+  darkModeElement.classList.remove("bg-gray-800")
+  darkModeElement.classList.remove("w-[60%]")
+  darkModeIcon.classList.remove("fill-white")
+  darkModeElement.classList.add("w-[40%]")
+}
+lightModeElement.addEventListener('click', changeSunIconColor)
