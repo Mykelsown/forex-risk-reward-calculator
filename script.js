@@ -258,6 +258,7 @@ inputCurrency.addEventListener("blur", restoreStyleCurrency);
 
 // Implementing Dark/Light Mode functionalities
 
+// light mode
 let changeTheme = true;
 
 if (changeTheme) {
@@ -325,6 +326,7 @@ if (changeTheme) {
   lightModeElement.addEventListener("click", changeSunMoon);
 }
 
+// Dark mode
 const backToDarKMode = function () {
   changeTheme = false;
   if (!changeTheme) {
