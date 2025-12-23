@@ -49,6 +49,7 @@ const updateRiskPercentageicon = document.querySelector(
 const updateCurrencyIcon = document.querySelector(".currency-icon");
 
 // change mode
+const lightAndDarkCont = document.querySelector('.light-n-dark-cont')
 const lightModeElement = document.querySelector(".light-mode");
 const lightModeIcon = document.querySelector(".light-mode-icon");
 const darkModeElement = document.querySelector(".dark-mode");
@@ -224,63 +225,78 @@ inputCurrency.addEventListener("focus", styleCurrencyUi);
 inputCurrency.addEventListener("blur", restoreStyleCurrency);
 
 // Implementing Dark/Light Mode functionalities
-const lightMode = function () {
-  changeBody.classList.remove(
-    "bg-[radial-gradient(circle_at_center,#001433_45%,#000E24_100%)]"
-  );
-  changeBody.classList.add("bg-white");
-};
-lightModeElement.addEventListener("click", lightMode);
 
-getAllWhiteText.forEach((el) => {
-  function changeTextColor() {
-    el.classList.remove("text-white");
-    el.classList.add("text-priBlues-900");
-  }
+let changeTheme = true
 
-  lightModeElement.addEventListener("click", changeTextColor);
-});
+if (changeTheme) {
+  const lightMode = function () {
+    changeBody.classList.remove(
+      "bg-[radial-gradient(circle_at_center,#001433_45%,#000E24_100%)]"
+    );
+    changeBody.classList.add("bg-white");
+  };
+  lightModeElement.addEventListener("click", lightMode);
 
-getAllGrayText.forEach((el) => {
-  function changeGrayColor() {
-    el.classList.remove("text-gray-400");
-    el.classList.add("text-gray-700");
-  }
-  lightModeElement.addEventListener("click", changeGrayColor);
-});
+  getAllWhiteText.forEach((el) => {
+    function changeTextColor() {
+      el.classList.remove("text-white");
+      el.classList.add("text-priBlues-900");
+    }
 
-getDarkBackground.forEach((el) => {
-  function changeBackgroundMain() {
-    el.classList.remove("bg-priBlues-900");
-    el.classList.add("bg-priBlues-100");
-  }
-  lightModeElement.addEventListener("click", changeBackgroundMain);
-});
+    lightModeElement.addEventListener("click", changeTextColor);
+  });
 
-getInputsBox.forEach((el) => {
-  function changeInputsBox() {
-    el.classList.remove("bg-gray-700");
-    el.classList.add("bg-gray-400");
-  }
-  lightModeElement.addEventListener("click", changeInputsBox);
-});
+  getAllGrayText.forEach((el) => {
+    function changeGrayColor() {
+      el.classList.remove("text-gray-400");
+      el.classList.add("text-gray-700");
+    }
+    lightModeElement.addEventListener("click", changeGrayColor);
+  });
 
-getRiskRewardColor.forEach((el) => {
-  function changeRiskRewardBgColor() {
-    el.classList.remove("bg-priBlues-800");
-    el.classList.add("bg-priBlues-400");
-  }
-  lightModeElement.addEventListener("click", changeRiskRewardBgColor);
-});
+  getDarkBackground.forEach((el) => {
+    function changeBackgroundMain() {
+      el.classList.remove("bg-priBlues-900");
+      el.classList.add("bg-priBlues-100");
+    }
+    lightModeElement.addEventListener("click", changeBackgroundMain);
+  });
 
-const changeSunIconColor =  function(){
-  lightModeElement.classList.add('bg-gray-800')
-  lightModeIcon.classList.add('fill-white')
-  lightModeElement.classList.remove('w-[40%]')
-  lightModeElement.classList.add('w-[60%]')
-  darkModeElement.classList.remove("bg-gray-800")
-  darkModeElement.classList.remove("w-[60%]")
-  darkModeIcon.classList.remove("fill-white")
-  darkModeElement.classList.add("w-[40%]")
+  getInputsBox.forEach((el) => {
+    function changeInputsBox() {
+      el.classList.remove("bg-gray-700");
+      el.classList.add("bg-gray-400");
+    }
+    lightModeElement.addEventListener("click", changeInputsBox);
+  });
+
+  getRiskRewardColor.forEach((el) => {
+    function changeRiskRewardBgColor() {
+      el.classList.remove("bg-priBlues-800");
+      el.classList.add("bg-priBlues-400");
+    }
+    lightModeElement.addEventListener("click", changeRiskRewardBgColor);
+  });
+
+  const changeSunMoon = function () {
+    lightModeElement.classList.add("bg-gray-800");
+    lightModeIcon.classList.add("fill-white");
+    lightModeElement.classList.remove("w-[40%]");
+    lightModeElement.classList.add("w-[60%]");
+    darkModeElement.classList.remove("bg-gray-800");
+    darkModeElement.classList.remove("w-[60%]");
+    darkModeIcon.classList.remove("fill-white");
+    darkModeElement.classList.add("w-[40%]");
+    lightAndDarkCont.classList.remove('bg-gray-600')
+    lightAndDarkCont.classList.add('text-white')
+  };
+  lightModeElement.addEventListener("click", changeSunMoon);
 }
-lightModeElement.addEventListener('click', changeSunIconColor)
+
+const backToDarKMode = function(){
+  changeTheme = false
+  if (!changeTheme) {
+    window.location.reload()
+  }
+}
+darkModeElement.addEventListener('click', backToDarKMode)
