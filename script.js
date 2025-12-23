@@ -49,7 +49,7 @@ const updateRiskPercentageicon = document.querySelector(
 const updateCurrencyIcon = document.querySelector(".currency-icon");
 
 // change mode
-const lightAndDarkCont = document.querySelector('.light-n-dark-cont')
+const lightAndDarkCont = document.querySelector(".light-n-dark-cont");
 const lightModeElement = document.querySelector(".light-mode");
 const lightModeIcon = document.querySelector(".light-mode-icon");
 const darkModeElement = document.querySelector(".dark-mode");
@@ -100,7 +100,6 @@ const calcResults = function () {
 
   // Calculate Stop Loss Distance
   const slDistance = Math.abs(entry - stopLoss) * 10000;
-  console.log(slDistance);
 
   // Calculate Take Profit Distance
   const tpDistance = Math.abs(takeProfit - entry) * 10000;
@@ -132,18 +131,51 @@ const calcResults = function () {
     displayLongDirection.style.display = "none";
   }
 
+  // Digit Grouping
+  function digitGrouping(digits) {
+    const convertedDigits = `${digits}`;
+    const separateDigits = convertedDigits.split(".");
+    const firstEl = separateDigits[0];
+    let modifiedDigits = "";
+    for (let i = firstEl.length - 1; i >= 0; i--) {
+      modifiedDigits += firstEl[firstEl.length - 1 - i];
+      if (i % 3 === 0 && i !== 0) {
+        modifiedDigits += ",";
+      }
+    }
+
+    const semiFinale = [modifiedDigits, separateDigits[1]];
+    const finale = semiFinale.join(".");
+
+    if (separateDigits.length === 2) {
+      return finale;
+    } else {
+      return modifiedDigits;
+    }
+  }
+
   // Update UI
   function updateInterface() {
     if (validateInput()) {
-      displayRiskInDollars.textContent = `${riskAmount.toFixed(2)}`;
-      displayRiskInPips.textContent = `${slDistance.toFixed(2)} pips`;
-      displayRewardInDollars.textContent = `${rewardAmount.toFixed(2)}`;
-      displayRewardInPips.textContent = `${tpDistance.toFixed(2)} pips`;
+      displayRiskInDollars.textContent = `$${digitGrouping(
+        riskAmount.toFixed(2)
+      )}`;
+      displayRiskInPips.textContent = `${digitGrouping(
+        slDistance.toFixed(2)
+      )} pips`;
+      displayRewardInDollars.textContent = `$${digitGrouping(
+        rewardAmount.toFixed(2)
+      )}`;
+      displayRewardInPips.textContent = `${digitGrouping(
+        tpDistance.toFixed(2)
+      )} pips`;
       displayRiskRewardRatioInNum.textContent = `1 : ${
         rrr <= 9 ? rrr.toFixed(2) : rrr.toFixed()
       }`;
-      displayLotSize.textContent = `${lotSize.toFixed(2)} Lots`;
-      displayUnitSize.textContent = `(${unitSize.toFixed()} units)`;
+      displayLotSize.textContent = `${digitGrouping(lotSize.toFixed(2))} Lots`;
+      displayUnitSize.textContent = `(${digitGrouping(
+        unitSize.toFixed()
+      )} units)`;
 
       displayBarMovement.innerHTML = "";
 
@@ -226,7 +258,7 @@ inputCurrency.addEventListener("blur", restoreStyleCurrency);
 
 // Implementing Dark/Light Mode functionalities
 
-let changeTheme = true
+let changeTheme = true;
 
 if (changeTheme) {
   const lightMode = function () {
@@ -287,16 +319,16 @@ if (changeTheme) {
     darkModeElement.classList.remove("w-[60%]");
     darkModeIcon.classList.remove("fill-white");
     darkModeElement.classList.add("w-[40%]");
-    lightAndDarkCont.classList.remove('bg-gray-600')
-    lightAndDarkCont.classList.add('text-white')
+    lightAndDarkCont.classList.remove("bg-gray-600");
+    lightAndDarkCont.classList.add("text-white");
   };
   lightModeElement.addEventListener("click", changeSunMoon);
 }
 
-const backToDarKMode = function(){
-  changeTheme = false
+const backToDarKMode = function () {
+  changeTheme = false;
   if (!changeTheme) {
-    window.location.reload()
+    window.location.reload();
   }
-}
-darkModeElement.addEventListener('click', backToDarKMode)
+};
+darkModeElement.addEventListener("click", backToDarKMode);
